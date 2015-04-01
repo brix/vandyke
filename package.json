@@ -1,0 +1,29 @@
+{
+  "name": "vandyke-runtime",
+  "version": "0.0.0",
+  "description": "Runtime of VanDyke template engine for React",
+  "license": "MIT",
+  "author": {
+    "name": "Evan Vosberg",
+    "email": "evanvosberg@inext.me"
+  },
+  "homepage": "https://github.com/brix/vandyke-runtime",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brix/vandyke-runtime.git"
+  },
+  "bugs": {
+    "url": "https://github.com/brix/vandyke-runtime/issues"
+  },
+  "main": "source/vandyke.js",
+  "keywords": [
+    "vandyke",
+    "react",
+    "template",
+    "render"
+  ],
+  "dependencies": {
+    "cla55": "*"
+  },
+  "devDependencies": {}
+}
