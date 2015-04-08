@@ -80,11 +80,28 @@ VanDyke = Cla55.extend({
     components: {},
 
     // Template related methods
-    data: function data(ctx, key, fromScope) {
+    data: function data(ctx, path, fromScope) {
         var last = ctx.scope.length - 1,
-            store = fromScope ? ctx.scope[last] : ctx.store[last];
+            store = fromScope ? ctx.scope[last] : ctx.store[last],
+            key,
+            i,
+            l;
 
-        return store[key];
+        try {
+            for (i = 0, l = path.length; i < l; i++) {
+                key = path[i];
+
+                if (key === '..') {
+                    store = fromScope ? ctx.scope[--last] : ctx.store[--last];
+                } else {
+                    store = store[key];
+                }
+            }
+        } catch (error) {
+            store = void 0;
+        }
+
+        return store;
     },
 
     listener: function listener(ctx, name) {
