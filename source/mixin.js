@@ -37,7 +37,7 @@ Mixin = Cla55.extend({
     constructor: function constructor(VanDykeRuntime) {
         var that = this;
 
-        if (this instanceof Mixin) {
+        if (that instanceof Mixin) {
             // Initialize instance of Mixin
 
             that = _.assign({}, that.__STATIC.prototype);
