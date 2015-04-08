@@ -95,15 +95,20 @@ Mixin = Cla55.extend({
         this.vandyke.template = _.result(this, 'vandykeTemplate', this._vandykeTemplate);
 
         // Render
-        return this.vandyke.render(_.result(this, 'vandykeData', this._vandykeData), {
-            listeners: _.result(this, 'vandykeListeners', this._vandykeListeners),
-            helpers: _.result(this, 'vandykeHelpers', this._vandykeHelpers),
-            components: _.result(this, 'vandykeComponents', this._vandykeComponents)
-        });
+        return this.vandyke.render(
+            _.result(this, 'vandykeData', this._vandykeData),
+            {
+                listeners: _.result(this, 'vandykeListeners', this._vandykeListeners),
+                helpers: _.result(this, 'vandykeHelpers', this._vandykeHelpers),
+                components: _.result(this, 'vandykeComponents', this._vandykeComponents)
+            }
+        );
     },
 
     // Overwrite defaults by defining your own for each component
 /*
+    template: require('path-to/template.vandyke'),
+
     vandykeHelpers: {},
 
     vandykeComponents: {},
@@ -127,7 +132,8 @@ Mixin = Cla55.extend({
 
     // React life cycle
     componentWillMount: function () {
-        this.vandyke = this.vandyke(this.vandykeTemplate);
+        // Create vandyke instance
+        this.vandyke = this.vandyke();
     },
 
     render: function () {
