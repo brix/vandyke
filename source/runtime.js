@@ -110,16 +110,15 @@ VanDyke = Cla55.extend({
 
     helper: function helper(ctx, name, args, body, alternate) {
         var helperArgs = [],
-            helper;
+            helper = ctx.helpers[name] || this.helpers[name];
 
         // Iterate over array / use object context
-        if (!args.length) {
-            args = [this.data(ctx, name)];
+        if (!helper && !args.length) {
+            args = [this.data(ctx, [name])];
 
             name = _.isArray(args[0]) ? 'each' : 'with';
+            helper = ctx.helpers[name] || this.helpers[name];
         }
-
-        helper = ctx.helpers[name] || this.helpers[name];
 
         if (!helper) {
             return null;
