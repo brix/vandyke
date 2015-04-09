@@ -23,7 +23,7 @@
     "render"
   ],
   "dependencies": {
-    "cla55": "*"
+    "cla55": "~0.1.3"
   },
   "devDependencies": {}
 }
