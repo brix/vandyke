@@ -1,5 +1,7 @@
 /*global require, exports, module*/
 
+'use strict';
+
 var Mixin = require('./mixin'),
 
     Runtime = require('./runtime'),

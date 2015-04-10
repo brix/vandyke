@@ -1,5 +1,7 @@
 /*global require, exports, module*/
 
+'use strict';
+
 var _ = require('./utils'),
 
     Cla55 = require('cla55'),
@@ -32,23 +34,23 @@ VanDyke = Cla55.extend({
     },
 
     helpers: {
-       'if': function (args, body, alternate) {
+        'if': function (args, body, alternate) {
             if (args.length && args[0]) {
                 return body && body();
             } else {
                 return alternate && alternate();
             }
-       },
+        },
 
-       'unless': function (args, body, alternate) {
+        'unless': function (args, body, alternate) {
             if (args.length && !args[0]) {
                 return body && body();
             } else {
                 return alternate && alternate();
             }
-       },
+        },
 
-       'each': function (args, body) {
+        'each': function (args, body) {
             var list = args[0],
                 l = list && list.length,
                 i = 0,
@@ -68,13 +70,13 @@ VanDyke = Cla55.extend({
             }
 
             return result;
-       },
+        },
 
-       'with': function (args, body) {
+        'with': function (args, body) {
             if (_.isObject(args[0])) {
                 return body(args[0]);
             }
-       }
+        }
     },
 
     components: {},
@@ -104,23 +106,23 @@ VanDyke = Cla55.extend({
         return store;
     },
 
-    listener: function listener(ctx, name) {
+    listener: function listener (ctx, name) {
         return ctx.listeners[name];
     },
 
     helper: function helper(ctx, name, args, body, alternate) {
         var helperArgs = [],
-            helper = ctx.helpers[name] || this.helpers[name];
+            helperMethod = ctx.helpers[name] || this.helpers[name];
 
         // Iterate over array / use object context
-        if (!helper && !args.length) {
+        if (!helperMethod && !args.length) {
             args = [this.data(ctx, [name])];
 
             name = _.isArray(args[0]) ? 'each' : 'with';
-            helper = ctx.helpers[name] || this.helpers[name];
+            helperMethod = ctx.helpers[name] || this.helpers[name];
         }
 
-        if (!helper) {
+        if (!helperMethod) {
             return null;
         }
 
@@ -172,7 +174,7 @@ VanDyke = Cla55.extend({
             }
         }
 
-        return helper.apply(this, helperArgs) || null;
+        return helperMethod.apply(this, helperArgs) || null;
     },
 
     component: function element(ctx, name) {
@@ -218,7 +220,9 @@ VanDyke = Cla55.extend({
 
     // General public methods
     render: function render(data, options) {
-        options || (options = emptyObject);
+        if (!options) {
+            options = emptyObject;
+        }
 
         // Create render context
         var ctx = {
@@ -257,8 +261,8 @@ VanDyke = Cla55.extend({
         return this;
     },
 
-    template: function template(template) {
-        var runtime = new this(template);
+    template: function template(templateMethod) {
+        var runtime = new this(templateMethod);
 
         return runtime.render.bind(runtime);
     },

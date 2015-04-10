@@ -1,5 +1,7 @@
 /*global require, exports, module*/
 
+'use strict';
+
 var _ = require('./utils'),
 
     // Pseudo class implementation (all mixin properties needs to be own properties)
@@ -43,7 +45,9 @@ Mixin = Cla55.extend({
             that = _.assign({}, that.__STATIC.prototype);
 
             // Prefere runtime from arguments
-            VanDykeRuntime || (VanDykeRuntime = that.vandyke);
+            if (!VanDykeRuntime) {
+                VanDykeRuntime = that.vandyke;
+            }
 
             // Check whether a VanDyke Runtime is defined
             if (!VanDykeRuntime) {
@@ -106,7 +110,7 @@ Mixin = Cla55.extend({
     },
 
     // Overwrite defaults by defining your own for each component
-/*
+    /*
     template: require('path-to/template.vandyke'),
 
     vandykeHelpers: {},
@@ -128,7 +132,7 @@ Mixin = Cla55.extend({
     vandykeRender: function () {
         return this._vandykeRender();
     },
-*/
+    */
 
     // React life cycle
     componentWillMount: function () {

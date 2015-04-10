@@ -1,15 +1,17 @@
 /*global require, exports, module*/
 
+'use strict';
+
 var _ = {
-        slice: function (arr, index, length) {
-            return Array.prototype.slice.call(arr, index, length || arr.length)
+        slice: function slice(arr, index, length) {
+            return Array.prototype.slice.call(arr, index, length || arr.length);
         },
 
-        isArray: Array.isArray || function(obj) {
-            return Object.prototype.toString.call(obj) == '[object Array]';
+        isArray: Array.isArray || function isArray(obj) {
+            return Object.prototype.toString.call(obj) === '[object Array]';
         },
 
-        isObject: function(obj) {
+        isObject: function isObject(obj) {
             return obj === Object(obj);
         },
 
@@ -25,8 +27,10 @@ var _ = {
             return target;
         },
 
-        result: function(object, property, fallback) {
+        result: function result(object, property, fallback) {
+            /*jshint eqnull: true*/
             var value = object == null ? undefined : object[property];
+            /*jshint eqnull: false*/
 
             if (value === undefined) {
                 value = fallback;
@@ -37,10 +41,10 @@ var _ = {
 
         bind: (
             Function.prototype.bind ?
-            function (func, context) {
+            function bind(func, context) {
                 return Function.prototype.bind.apply(func, _.slice(arguments, 1));
             } :
-            function (func, context) {
+            function bind(func, context) {
                 var args = _.slice(arguments, 2);
 
                 if (typeof func !== 'function') {
@@ -60,11 +64,11 @@ var _ = {
 
                 proto = Creator.prototype;
 
-            return function (obj) {
+            return function create(obj) {
                 Creator.prototype = obj;
 
                 return new Creator();
-            }
+            };
         }())
     };
 
