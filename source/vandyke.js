@@ -1,5 +1,3 @@
-/*global require, exports, module*/
-
 'use strict';
 
 var Mixin = require('./mixin'),

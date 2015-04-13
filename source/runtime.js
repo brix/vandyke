@@ -1,5 +1,3 @@
-/*global require, exports, module*/
-
 'use strict';
 
 var _ = require('./utils'),
@@ -188,7 +186,7 @@ VanDyke = Cla55.extend({
         return this.React.createElement.apply(this.React, args);
     },
 
-    concat: function concat(ctx) {
+    concat: function concat(/*ctx*/) {
         var list = _.slice(arguments, 1);
 
         return list
@@ -208,7 +206,7 @@ VanDyke = Cla55.extend({
             .join('');
     },
 
-    list: function list(ctx) {
+    list: function list(/*ctx*/) {
         return _.slice(arguments, 1);
     },
 

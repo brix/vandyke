@@ -1,5 +1,3 @@
-/*global require, exports, module*/
-
 'use strict';
 
 var _ = {
@@ -41,7 +39,7 @@ var _ = {
 
         bind: (
             Function.prototype.bind ?
-            function bind(func, context) {
+            function bind(func) {
                 return Function.prototype.bind.apply(func, _.slice(arguments, 1));
             } :
             function bind(func, context) {

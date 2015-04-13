@@ -1,5 +1,3 @@
-/*global require, exports, module*/
-
 'use strict';
 
 var _ = require('./utils'),
@@ -9,7 +7,8 @@ var _ = require('./utils'),
         var Cla55 = require('cla55').Cla55;
 
         return Cla55.extend({}, {
-            extend: function (protoProps, staticProps) {
+            // jscs:disable safeContextKeyword
+            extend: function () {
                 var Parent = this,
                     Child = Cla55.extend.apply(this, arguments),
                     key;
@@ -26,6 +25,7 @@ var _ = require('./utils'),
 
                 return Child;
             }
+            // jscs:enable safeContextKeyword
         });
     }()),
 
