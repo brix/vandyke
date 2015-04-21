@@ -1,4 +1,10 @@
-# Vandyke
+# [ALPHA] Vandyke
+
+## Intro
+
+VanDyke is a React template engine and still under development with a first ALPHA release.
+
+Test cases and more detailed documentation are on the way ...
 
 ## Template markup
 
