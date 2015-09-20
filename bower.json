@@ -1,6 +1,6 @@
 {
   "name": "vandyke",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "VanDyke template engine for React",
   "license": "MIT",
   "homepage": "https://github.com/brix/vandyke",
